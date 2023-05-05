@@ -14,9 +14,26 @@ echo.
 set smartpath_verify=
 set /P smartpath_verify="###WARNING. THIS WILL OVERWRITE EXISTING REPORT FILES AT THIS LOCATION.### Confirm [Y/N]:    "
 if /I "%smartpath_verify%" == "N" goto savetopath
-if /I "%smartpath_verify%" == "Y" goto xwfsavetopath
+if /I "%smartpath_verify%" == "Y" goto checksmartdir
 if not defined "%smartpath_verify%" echo Please confirm.
-goto :savetopath
+goto savetopath
+
+:checksmartdir
+if exist "%smartpath%" goto xwfimageformat
+if not exist "%smartpath%" echo ###Folder does not exist. Please try again.###
+goto savetopath
+
+:xwfimageformat
+echo.
+echo.
+set /P xwf_format="Type an image format for XWF to use, 'e01' or 'raw':    "
+set xwf_format=%xwf_format%
+
+set /P xwf_format_verify="Confirm [Y/N]:    "
+if /I "%xwf_format_verify%" == "Y" goto xwfsavetopath
+if /I "%xwf_format_verify%" == "N" goto xwfimageformat
+if not defined "%xwf_format_verify%" echo Please confirm.
+goto xwfimageformat
 
 :xwfsavetopath
 echo.
@@ -29,22 +46,15 @@ set xwfimagepath=%xwfimagepath:"=%
 echo.
 echo.
 set /P xwfimagepath_verify="###WARNING. THIS WILL OVERWRITE EXISTING FILES OF THE SAME NAME.### Confirm [Y/N]:    "
-if /I "%xwfimagepath_verify%" EQU "Y" goto :xwfimageformat
-if /I "%xwfimagepath_verify%" EQU "N" goto :xwfsavetopath
+if /I "%xwfimagepath_verify%" EQU "Y" goto checkxwffile
+if /I "%xwfimagepath_verify%" EQU "N" goto xwfsavetopath
 if not defined "%xwfimagepath_verify%" echo Please confirm.
 goto xwfsavetopath
 
-:xwfimageformat
-echo.
-echo.
-set /P xwf_format="Type an image format for XWF to use, 'e01' or 'raw':    "
-set xwf_format=%xwf_format%
-
-set /P xwf_format_verify="Confirm [Y/N]:    "
-if /I "%xwf_format_verify%" == "Y" goto xwf_image_description
-if /I "%xwf_format_verify%" == "N" goto xwfimageformat
-if not defined "%xwf_format_verify%" echo Please confirm.
-goto xwfimageformat
+:checkxwffile
+if not exist "%xwfimagepath%.%xwf_format%" goto xwf_image_description
+if exist "%xwfimagepath%.%xwf_format%" echo ###An image file of that name and format already exists. Silly goose. Please try again.###
+goto xwfsavetopath
 
 :xwf_image_description
 echo.
@@ -69,7 +79,7 @@ set /P xwf_examiner_name_verify="Confirm [Y/N]:    "
 if /I "%xwf_examiner_name_verify%" == "Y" goto smart_drive_selection
 if /I "%xwf_examiner_name_verify%" == "N" goto xwf_image_examiner_name
 if not defined "%xwf_examiner_name_verify%" echo Please confirm.
-goto :xwf_image_examiner_name
+goto xwf_image_examiner_name
 
 :smart_drive_selection
 
