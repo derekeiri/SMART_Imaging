@@ -24,8 +24,9 @@ The batch command will guide the examiner data input: path to save SMART informa
 
 ### Dependencies
 
-I used a Windows 10 Pro OS, v10.0.19044 Build 19044. The following programs are used:
+I used a Windows 10 Pro OS, v10.0.19044 Build 19044. The script has commands to execute the following programs:
 * smartctl.exe from v7.3 of [Smartmontools](https://www.smartmontools.org/)
+* diskpart to list disks
 * [X-Ways Forensics](https://www.x-ways.net/) v20.8
 * [WinMerge](https://winmerge.org/) v2.16.30
 
