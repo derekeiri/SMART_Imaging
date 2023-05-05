@@ -1,10 +1,10 @@
 # SMART_Imaging
 
-Batchfiles that automates imaging and capturing SMART information.
+Batch files that automates imaging and capturing SMART information.
 
 ## Description
 
-A small personal project to replicate a feature observed on the Atola Forensic Imager that compares SMART information before and after the imaging process. These batchfiles automate the following:
+A small personal project to replicate a feature observed on the Atola Forensic Imager that compares SMART information before and after the imaging process. These batch files automate the following:
 * Use examiner specified details
 * Capture the SMART information and output results to a text file before imaging
 * Initiate the imaging process
@@ -21,7 +21,7 @@ Commands are based on [smartmontools wiki for USB devices](https://www.smartmont
 
 In XWF, turn off the warning to not forget to take your dongle. The script will be interrupted if it pops up.
 
-The batchfiles are described below:
+The batch files are described below:
 * *smart_imaging.bat*: The primary batch file. This is executed from a Command Prompt using Administrative Privileges. From the prompt, cd to the directory of the batch files then enter the following command:
 ```
 start smart_imaging.bat
