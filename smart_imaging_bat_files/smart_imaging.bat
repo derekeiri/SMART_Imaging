@@ -18,7 +18,6 @@ if /I "%smartpath_verify%" == "Y" goto xwfsavetopath
 if not defined "%smartpath_verify%" echo Please confirm.
 goto :savetopath
 
-
 :xwfsavetopath
 echo.
 echo.  
@@ -99,7 +98,6 @@ if /I "%drive_verify%" == "N" goto drive_selection
 if not defined "%drive_verify%" echo Please confirm.
 goto drive_selection
 
-
 :xwfdrive_selection
 echo list disk | diskpart
 set /P xwfdrive="Enter the drive number that corresponds with the Windows drive letter, e.g. 1.:    "
@@ -112,11 +110,10 @@ if /I "%xwfdrive_verify%" == "N" goto xwfdrive_selection_verify
 if not defined "%xwfdrive_verify%" echo Please confirm.
 goto xwfdrive_selection_verify
 
-
 :bridgeexistence
 echo.
 echo.
-set /P bridge="Are you using a USB/NVMe bridge [Y/N]?:   "
+set /P bridge="Are you using a smartmontools supported USB bridge [Y/N]?:   "
 if /I "%bridge%" == "Y" goto bridgedevice
 if /I "%bridge%" == "N" goto nobridgedevice_before
 if not defined "%bridge%" echo Please answer.
@@ -129,14 +126,15 @@ echo A selection of smartctl.exe supported USB bridges:
 echo 1. Realtek RTL9210
 echo 2. JMicron JMS583
 echo 3. ASMedia ASM2362
+echo 4. Other via SAT ATA pass-through
 set devctrl=[]
 set /P devctrl="Which bridge? Select a number:    "
 if %devctrl%==1 goto RTL9210_before
 if %devctrl%==2 goto JMS583_before
 if %devctrl%==3 goto ASM2362_before
+if %devctrl%==4 goto SAT_ATA_before
 if %devctrl%==[] echo Please answer.
 goto bridgedevice
-
 
 :RTL9210_before
 cd "%smartmontools%" 
@@ -151,6 +149,11 @@ goto XWF
 :ASM2362_before
 cd "%smartmontools%" 
 smartctl.exe -a -d sntasmedia %drive% > "%smartpath%\smartbefore.txt"
+goto XWF
+
+:SAT_ATA_before
+cd "%smartmontools%" 
+smartctl.exe -a -d sat,12 %drive% > "%smartpath%\smartbefore.txt"
 goto XWF
 
 :nobridgedevice_before
@@ -169,11 +172,10 @@ goto bridgedevice_after
 
 :bridgedevice_after
 if /I '%bridge%'=='N' goto nobridgedevice_after
-set /a devctrl="%devctrl%"+4
-if %devctrl%+1==5 goto RTL9210_after
-if %devctrl%+1==6 goto JMS583_after
-if %devctrl%+1==7 goto ASM2362_after
-
+if %devctrl%==1 goto RTL9210_after
+if %devctrl%==2 goto JMS583_after
+if %devctrl%==3 goto ASM2362_after
+if %devctrl%==4 goto SAT_ATA_after
 
 :RTL9210_after
 cd "%smartmontools%" 
@@ -193,6 +195,11 @@ goto smartcompare
 :ASM2362_after
 cd "%smartmontools%" 
 smartctl.exe -a -d sntasmedia %drive% > "%smartpath%\smartafter.txt"
+goto smartcompare
+
+:SAT_ATA_after
+cd "%smartmontools%" 
+smartctl.exe -a -d sat,12 %drive% > "%smartpath%\smartafter.txt"
 goto smartcompare
 
 :smartcompare
