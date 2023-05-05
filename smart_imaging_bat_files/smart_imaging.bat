@@ -74,7 +74,7 @@ goto :xwf_image_examiner_name
 
 :smart_drive_selection
 
-call "%~dp0"smartconfig.bat
+call "%~dp0"smart_imaging_config.bat
 rem Consider creating a batch file of variable of path to smartctl.exe
 echo.
 echo.
