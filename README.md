@@ -1,15 +1,21 @@
 # SMART_Imaging
 
-Batch files that automates imaging and capaturing SMART information.
+Batch files that automates imaging and capturing SMART information.
 
 ## Description
 
 A small project to replicate a feature observed on the Atola Forensic Imager that compares SMART information before and after the imaging process. These batch files automate the following:
-* Uses examiner specified details
-* Capture the SMART information before imaging
+* Use examiner specified details
+* Capture the SMART information and output results to a text file before imaging
 * Initiate the imaging process
-* Capture the SMART information again
-* Compare the SMART information outputs, then saves an HTML report.
+* Capture the SMART information and output results to a text file, again
+* Compare the SMART information output, then save an HTML report.
+
+Commands are based on [smartmontools wiki for USB devices](https://www.smartmontools.org/wiki/USB).
+* ASMedia ASM2362 
+* JMicron JMS583 
+* Realtek RTL9210/1 
+* various via SAT ATA pass-through 12
 
 ## Getting Started
 
@@ -18,8 +24,8 @@ The batch files are described below:
 ```
 start smart_imaging.bat
 ```
-The batch command will guide the examiner data input: path to save SMART information, path and filename of the image, image format. Examiner name and descriptions are included in the image file created by X-Ways Forensics. Prompts will also determine which commands to use for smartctl.exe to access the drive with or without a USB adapter.
-* *smart_imaging_config.bat*: A supporting batch file. This may be edited with a text editor to speicify the paths of the smartctl.exe, X-Ways Forensics, and WinMerge.
+The batch command will prompt for information: path to save SMART information, path and filename of the image, image format. Examiner name and descriptions are included in the image file created by X-Ways Forensics. Prompts will also determine which supported bridge is used, if at all, for smartctl.exe to report on the drive.
+* *smart_imaging_config.bat*: A supporting batch file that is called in smart0imaging.bat. This may be edited with a text editor to specify the paths of the smartctl.exe, X-Ways Forensics, and WinMerge.
 
 
 ### Dependencies
@@ -30,6 +36,4 @@ I used a Windows 10 Pro OS, v10.0.19044 Build 19044. The script has commands to 
 * [X-Ways Forensics](https://www.x-ways.net/) v20.8
 * [WinMerge](https://winmerge.org/) v2.16.30
 
-The writeblocker tested with smartctl.exe is DeepSpar USB Stablizer (Firmware v.3.03a) using USB controller, Realtek RTL9210. ASMedia ASM2362 and JMicron JMS583 are included, but not tested.
-
-Future additions expected to follow is supporting SAT ATA pass-through.
+The write blocker tested with smartctl.exe is DeepSpar USB Stablizer (Firmware v.3.03a) using USB/NVMe bridge, Realtek RTL9210, and an Inateck USB/SATA bridge that supports SAT ATA pass-through 12. ASMedia ASM2362 and JMicron JMS583 are included, but have not been tested.
