@@ -1,10 +1,10 @@
 # SMART_Imaging
 
-Batch files that automates imaging and capturing SMART information.
+Batchfiles that automates imaging and capturing SMART information.
 
 ## Description
 
-A small project to replicate a feature observed on the Atola Forensic Imager that compares SMART information before and after the imaging process. These batch files automate the following:
+A small personal project to replicate a feature observed on the Atola Forensic Imager that compares SMART information before and after the imaging process. These batchfiles automate the following:
 * Use examiner specified details
 * Capture the SMART information and output results to a text file before imaging
 * Initiate the imaging process
@@ -19,14 +19,14 @@ Commands are based on [smartmontools wiki for USB devices](https://www.smartmont
 
 ## Getting Started
 
-* In XWF, turn off warning to not forget to take your dongle. The script will not continue if the pop-up remains.
+In XWF, turn off the warning to not forget to take your dongle. The script will be interrupted if it pops up.
 
-The batch files are described below:
+The batchfiles are described below:
 * *smart_imaging.bat*: The primary batch file. This is executed from a Command Prompt using Administrative Privileges. From the prompt, cd to the directory of the batch files then enter the following command:
 ```
 start smart_imaging.bat
 ```
-The batch command will prompt for information: path to save SMART information, path and filename of the image, image format. Examiner name and descriptions are included in the image file created by X-Ways Forensics. Prompts will also determine which supported bridge is used, if at all, for smartctl.exe to report on the drive.
+It will prompt for the following information: path to save SMART information, path and filename of the image, image format. Examiner name and descriptions, also prompted by the script, are included in the image file created by X-Ways Forensics. Prompts will also determine which supported bridge is used, if at all, for smartctl.exe to report on the drive.
 * *smart_imaging_config.bat*: A supporting batch file that is called in smart0imaging.bat. This may be edited with a text editor to specify the paths of the smartctl.exe, X-Ways Forensics, and WinMerge.
 
 
