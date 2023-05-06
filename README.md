@@ -27,7 +27,7 @@ The batch files are described below:
 start smart_imaging.bat
 ```
 It will prompt for the following information: path to save SMART information, path and filename of the image, image format. Examiner name and descriptions, also prompted by the script, are included in the image file created by X-Ways Forensics. Prompts will also determine which supported bridge is used, if at all, for smartctl.exe to report on the drive.
-* *smart_imaging_config.bat*: A supporting batch file that is called in smart0imaging.bat. This may be edited with a text editor to specify the paths of the smartctl.exe, X-Ways Forensics, and WinMerge.
+* *smart_imaging_config.bat*: A supporting batch file that is called in smart_imaging.bat. This may be edited with a text editor to specify the paths of the smartctl.exe, X-Ways Forensics, and WinMerge.
 
 
 ### Dependencies
