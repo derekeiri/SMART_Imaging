@@ -22,7 +22,7 @@ Commands are based on [smartmontools wiki for USB devices](https://www.smartmont
 In XWF, turn off the warning to not forget to take your dongle. The script will be interrupted if it pops up.
 
 The batch files are described below:
-* *smart_imaging.bat*: The primary batch file. This is executed from Command Prompt using administrator privileges. From the prompt, cd to the directory of the batch files then enter the following command:
+* *smart_imaging.bat*: The primary batch file. This is executed from Command Prompt using administrator privileges. From the console window, change to the directory (cd) where the batch files are located. The batch file may be executed by entering the following command:
 ```
 start smart_imaging.bat
 ```
