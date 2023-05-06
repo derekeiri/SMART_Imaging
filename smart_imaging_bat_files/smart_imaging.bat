@@ -3,7 +3,7 @@ echo This script will print out the drives available to assess SMART information
 echo before and after a forensic acquisition with X-Ways Forensics (tested with v20.8).
 echo.
 echo.
-echo ###REQUIRES ADMINISTRATIVE PRIVILEGES###
+echo ###REQUIRES ADMINISTRATOR PRIVILEGES###
 echo.
 echo.
 :savetopath
