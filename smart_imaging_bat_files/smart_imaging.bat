@@ -110,7 +110,7 @@ goto drive_selection
 
 :xwfdrive_selection
 echo list disk | diskpart
-set /P xwfdrive="Enter the drive number that corresponds with the Windows drive letter, e.g. 1.:    "
+set /P xwfdrive="Enter the drive number that corresponds with the Windows drive letter being imaged, e.g. 1.:    "
 echo You typed %xwfdrive%.
 
 :xwfdrive_selection_verify
