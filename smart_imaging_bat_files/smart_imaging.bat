@@ -103,14 +103,42 @@ set /P drive="Enter a drive. e.g. '/dev/sda'"   "
 echo.
 echo.
 set /P drive_verify="You entered '%drive%'. Are you sure [Y/N]?:    "
-if /I "%drive_verify%" == "Y" goto xwfdrive_selection
+if /I "%drive_verify%" == "Y" goto xwfdrive_help
 if /I "%drive_verify%" == "N" goto drive_selection
 if not defined "%drive_verify%" echo Please confirm.
 goto drive_selection
 
-:xwfdrive_selection
+:xwfdrive_help
+echo.
+echo.
 echo list disk | diskpart
-set /P xwfdrive="Enter the drive number that corresponds with the Windows drive letter being imaged, e.g. 1.:    "
+set /P drive_help="Would you like to know about these disks [Y/N]?:    "
+if /I "%drive_help%" == "Y" goto xwfdrive_detaildisk
+if /I "%drive_help%" == "N" goto xwfdrive_selection
+if not defined "%drive_verify%" echo "Do you need help?"
+goto xwfdrive_help
+
+:xwfdrive_detaildisk
+echo list disk | diskpart
+set /P detaildisk="Enter the drive number you want to learn more about, e.g. 1.:    "
+echo You typed %detaildisk%.
+(echo list disk
+echo select disk %detaildisk%
+echo detail disk
+)| diskpart
+
+:drive_selection_verify
+echo.
+echo.
+echo list disk | diskpart
+set /P drive_more_help="Did you want to learn more about another drive [Y/N]?:    "
+if /I "%drive_more_help%" == "Y" goto xwfdrive_detaildisk
+if /I "%drive_more_help%" == "N" goto xwfdrive_selection
+if not defined "%drive_more_help%" echo "Do you want more help?"
+goto xwfdrive_selection
+
+:xwfdrive_selection
+set /P xwfdrive="Enter the drive number that corresponds with the Windows drive letter, e.g. 1.:    "
 echo You typed %xwfdrive%.
 
 :xwfdrive_selection_verify
@@ -175,8 +203,7 @@ goto XWF
 rem Consider creating a batch file of variable of path to xwforensics64.exe
 echo X-Ways Forensics is ready to start.
 Pause
-cd "%xwf_path%" 
-START /W xwforensics64.exe :%xwfdrive% "|%xwf_format%|%xwfimagepath%%xwf_image_name%.%xwf_format%|%xwf_image_desc%|%xwf_examiner_name%" auto
+START "" /W %xwf_path% :%xwfdrive% "|%xwf_format%|%xwfimagepath%%xwf_image_name%.%xwf_format%|%xwf_image_desc%|%xwf_examiner_name%" auto
 timeout /t 5 /nobreak
 goto bridgedevice_after
 
