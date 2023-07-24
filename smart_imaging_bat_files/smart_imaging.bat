@@ -203,7 +203,7 @@ goto XWF
 rem Consider creating a batch file of variable of path to xwforensics64.exe
 echo X-Ways Forensics is ready to start.
 Pause
-START "" /W %xwf_path% :%xwfdrive% "|%xwf_format%|%xwfimagepath%%xwf_image_name%.%xwf_format%|%xwf_image_desc%|%xwf_examiner_name%" auto
+START /W "" %xwf_path% :%xwfdrive% "|%xwf_format%|%xwfimagepath%%xwf_image_name%.%xwf_format%|%xwf_image_desc%|%xwf_examiner_name%" auto
 timeout /t 5 /nobreak
 goto bridgedevice_after
 
