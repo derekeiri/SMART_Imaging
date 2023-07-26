@@ -204,7 +204,7 @@ rem Consider creating a batch file of variable of path to xwforensics64.exe
 echo X-Ways Forensics is ready to start.
 Pause
 START /W "" %xwf_path% :%xwfdrive% "|%xwf_format%|%xwfimagepath%%xwf_image_name%.%xwf_format%|%xwf_image_desc%|%xwf_examiner_name%" auto
-timeout /t 5 /nobreak
+ping -n 6 0.0.0.0 >nul
 goto bridgedevice_after
 
 :bridgedevice_after
