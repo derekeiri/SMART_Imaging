@@ -38,7 +38,7 @@ I used a Windows 10 Pro OS, v10.0.19044 Build 19044. The script has commands to 
 * smartctl.exe from v7.3 of [Smartmontools](https://www.smartmontools.org/)
 * diskpart to list disks
 * [X-Ways Forensics](https://www.x-ways.net/) v20.8
-* Ping as a method to delay the next execution after XWF auto quits
+* Ping as a method to delay the next command after XWF auto quits
 * [WinMerge](https://winmerge.org/) v2.16.30 - Portable x64 also works.
 
 The write blocker tested with smartctl.exe is DeepSpar USB Stablizer (Firmware v.3.03a) using USB/NVMe bridge, Realtek RTL9210, and an Inateck USB/SATA bridge that supports SAT ATA pass-through 12. ASMedia ASM2362 and JMicron JMS583 are included, but have not been tested.
