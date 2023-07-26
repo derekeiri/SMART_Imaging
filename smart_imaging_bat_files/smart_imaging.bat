@@ -27,7 +27,7 @@ goto savetopath
 :xwfimageformat
 echo.
 echo.
-set /P xwf_format="Type an image format for XWF to use, 'e01' or 'raw':    "
+set /P xwf_format="Type an image format for XWF to use (i.e., e01 or raw):    "
 set xwf_format=%xwf_format%
 
 set /P xwf_format_verify="Confirm [Y/N]:    "
@@ -39,12 +39,12 @@ goto xwfimageformat
 :xwfsavetopath
 echo.
 echo.  
-echo Please enter a path, including name of file, to save the acquired image to, 
-set /P xwfimagepath="e.g. 'D:\XWF_DIR\IMAGES\my_image_name':    "
+echo Please enter a path, including name of file, to save the acquired image to.
+set /P xwfimagepath="(e.g., D:\XWF_DIR\IMAGES\my_image_name):    "
 set xwfimagepath=%xwfimagepath:"=%
 
 :xwfsavetopathverify
-echo Ary you sure?
+echo Are you sure?
 set /P xwfimagepath_verify="Confirm [Y/N]:    "
 if /I "%xwfimagepath_verify%" EQU "Y" goto checkxwffile
 if /I "%xwfimagepath_verify%" EQU "N" goto xwfsavetopath
@@ -82,7 +82,6 @@ if not defined "%xwf_examiner_name_verify%" echo Please confirm.
 goto xwf_image_examiner_name
 
 :smart_drive_selection
-
 call "%~dp0"smart_imaging_config.bat
 echo.
 echo.
@@ -101,7 +100,7 @@ goto smart_drive_selection
 :smart_help_detail
 echo.
 echo.
-echo Which drive, e.g., '/dev/sda', you need more information on
+echo Which drive(e.g., /dev/sda) you need more information on?
 set /P smartdetaildrive="Enter here:    "
 You typed %smartdetaildrive%.
 echo.
@@ -129,7 +128,7 @@ echo.
 echo Hint: If using a DeepSpar USB Controller, select the letter 
 echo before the device reporting on the USB bridge.
 echo.
-echo Which drive, e.g. '/dev/sda', to run the SMART report on
+echo Which drive (e.g., /dev/sda) to run the SMART report on?
 set /P drive="Enter here:   "
 
 :drive_selection_verify
@@ -155,7 +154,7 @@ goto xwfdrive_help
 
 :xwfdrive_detaildisk
 echo list disk | diskpart
-echo Enter the drive number you want to learn more about, e.g. '1'
+echo Enter the drive number you want to learn more about (e.g., 1)
 set /P detaildisk="here:    "
 echo You typed %detaildisk%.
 (echo list disk
@@ -175,13 +174,13 @@ goto xwfdrive_selection
 
 
 :xwfdrive_selection
-echo Enter the drive number that corresponds with the Windows drive letter, e.g. '1'.
-set /P xwfdrive="Here:    "
+echo Enter the drive number that corresponds with the Windows drive letter (e.g., 1)
+set /P xwfdrive="here:    "
 echo You typed %xwfdrive%.
 
 :xwfdrive_selection_verify
 echo You entered '%xwfdrive%'.
-set /P xwfdrive_verify=" Are you sure [Y/N]?:    "
+set /P xwfdrive_verify="Are you sure [Y/N]?:    "
 if /I "%xwfdrive_verify%" == "Y" goto bridgeexistence
 if /I "%xwfdrive_verify%" == "N" goto xwfdrive_selection_verify
 if not defined "%xwfdrive_verify%" echo Please confirm.
