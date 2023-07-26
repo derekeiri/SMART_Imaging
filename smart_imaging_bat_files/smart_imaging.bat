@@ -240,7 +240,6 @@ smartctl.exe -a %drive% > "%smartpath%\smartbefore.txt"
 goto XWF
 
 :XWF
-rem Consider creating a batch file of variable of path to xwforensics64.exe
 echo X-Ways Forensics is ready to start.
 Pause
 START /W "" %xwf_path% :%xwfdrive% "|%xwf_format%|%xwfimagepath%%xwf_image_name%.%xwf_format%|%xwf_image_desc%|%xwf_examiner_name%" auto
@@ -280,7 +279,6 @@ smartctl.exe -a -d sat,12 %drive% > "%smartpath%\smartafter.txt"
 goto smartcompare
 
 :smartcompare
-rem Consider creating a batch file of variable of path to WinMergeU.exe
 cd "%winmerge%" 
 WinMergeU.exe "%smartpath%\smartbefore.txt" "%smartpath%\smartafter.txt" -or "%smartpath%\smart_check_text_report.html"
 echo.
