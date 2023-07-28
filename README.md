@@ -19,7 +19,7 @@ Commands are based on [smartmontools wiki for USB devices](https://www.smartmont
 
 ## Getting Started
 
-In XWF, turn off the warning to not forget to take your dongle. The script will be interrupted if it pops up.
+In XWF, turn off the warning to not forget to take your dongle. The script will be interrupted if it pops up. Make the appropriate changes to segments, hash, and  verification options. Consider creating/saving a winhex.cfg file when using this script.
 
 The batch files are described below:
 * *smart_imaging.bat*: The primary batch file. This is executed from Command Prompt using administrator privileges. From the console window, change to the directory (cd) where the batch files are located. The batch file may be executed by entering the following command:
@@ -28,7 +28,9 @@ start smart_imaging.bat
 ```
 Right-clicking on smart_imaging.bat to "Run as administator" will also work.
 
-It will prompt for the following information: path to save SMART information, path and filename of the image, image format. Examiner name and descriptions, also prompted by the script, are included in the image file created by X-Ways Forensics. Prompts will also determine which supported bridge is used, if at all, for smartctl.exe to report on the drive.
+It will prompt for the following information: path to save SMART information, path and filename of the image, image format. Examiner name and descriptions, also prompted by the script, are included in the image file created by X-Ways Forensics. 
+
+Prompts will also determine which supported bridge is used, if at all, for smartctl.exe to report on the drive. If using a bridge with a DeepSpar USB Stablizer, the prompts for smartctl.exe and DiskPart to retrieve more information about the target drive will not work. Will assess a solution to this at a later date.
 * *smart_imaging_config.bat*: A supporting batch file that is called in smart_imaging.bat. This may be edited with a text editor to specify the paths of the smartctl.exe, X-Ways Forensics, and WinMerge.
 
 
